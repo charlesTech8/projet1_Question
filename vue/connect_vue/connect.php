@@ -21,7 +21,7 @@
             <div class="form-row">
                 <div class="col-md-12 mb-4">
                     <label for="prenom">Email: </label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php if ( isset( $_COOKIE['email'] ) )  echo clean_champs($_COOKIE['email']); ?>" required>
                 </div>
                 <div class="col-md-12 mb-4">
                     <label for="prenom">Mot de passe: </label>
@@ -46,7 +46,7 @@
 
 <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Formulaire d'inscription</h5>
@@ -61,21 +61,15 @@
                         <div class="form-row">
                             <div class="col-sm-6 mb-4">
                                 <label for="nom">Nom *</label>
-                                <input type="text" class="form-control" name="nom" id="nom" placeholder="Entrez votre nom" value="<?php if (isset($_REQUEST['erreurIns']) || isset($_REQUEST['erreurInsNum'])) {
-                                                                                                                                        echo clean_champs($_REQUEST['nom']);
-                                                                                                                                    } ?>" required>
+                                <input type="text" style="<?php if (isset($_REQUEST['nom']) && empty( $_REQUEST['nom'] ))  echo 'border-color: red'; ?>" class="form-control" name="nom" id="nom" placeholder="Entrez votre nom" value="<?php if (isset($_REQUEST['nom']))  echo clean_champs($_REQUEST['nom']); ?>" required>                                                                                      
                             </div>
                             <div class="col-sm-6 mb-4">
                                 <label for="prenom">Prénoms *</label>
-                                <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Entrez votre prénom" value="<?php if (isset($_REQUEST['erreurIns']) || isset($_REQUEST['erreurInsNum'])) {
-                                                                                                                                                echo clean_champs($_REQUEST['prenom']);
-                                                                                                                                            } ?>" required>
+                                <input type="text" style="<?php if (isset($_REQUEST['prenom']) && empty( $_REQUEST['prenom'] ))  echo 'border-color: red'; ?>" class="form-control" name="prenom" id="prenom" placeholder="Entrez votre prénom" value="<?php if (isset($_REQUEST['prenom']))  echo clean_champs($_REQUEST['prenom']); ?>" required>
                             </div>
                             <div class="col-sm-12 mb-4">
                                 <label for="email">Entrez votre mail</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="identifiantd@nomdomaine" value="<?php if (isset($_REQUEST['erreurIns']) || isset($_REQUEST['erreurInsNum'])) {
-                                                                                                                                                    echo clean_champs($_REQUEST['email']);
-                                                                                                                                                } ?>" required>
+                                <input type="email" style="<?php if (isset($_REQUEST['email']) && empty( $_REQUEST['email'] ))  echo 'border-color: red'; ?>" class="form-control" name="email" id="email" placeholder="identifiantd@nomdomaine" value="<?php if (isset($_REQUEST['email']))  echo clean_champs($_REQUEST['email']); ?>" required>
                             </div>
                             <div class="col-sm-6 mb-4">
                                 <label for="email">Mot de passe *</label>
@@ -83,7 +77,8 @@
                             </div>
                             <div class="col-sm-6 mb-4">
                                 <label for="email">Confirmation *</label>
-                                <input type="password" name="confirmPwd" class="form-control" id="confirmPwd" required>
+                                <input onkeyup="checkPass();" type="password" name="confirmPwd" class="form-control" id="confirmPwd" required>
+                                <div style="color: red;" id="info"></div>
                             </div>
 
                             <div class="col-md-6 mb-4">

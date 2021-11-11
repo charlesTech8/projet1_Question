@@ -17,3 +17,11 @@ $erreurConnexion = '<p class="alert alert-danger" role="alert">Veillez vous conn
 $erreurFirst = '<p class="alert alert-primary" role="alert">Bienvenu sur WE CAN.
 <br> Si vous n\'avez pas un compte, <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg">cliqué ici</a> pour en créer.  Merci :)
 </p>';
+
+$erreurChamps = '<p class="alert alert-danger" role="alert">Veillez remplir les champs
+<br><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg">cliqué ici</a> pour remplir les champs vides.  Merci :)
+</p>';
+
+$erreurPass = '<p class="alert alert-danger" role="alert">Mot de passe invalide
+<br><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg">cliqué ici</a> et entrez un mot de passe identique.  Merci :)
+</p>';

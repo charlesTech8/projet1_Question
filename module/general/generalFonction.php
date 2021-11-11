@@ -21,30 +21,32 @@ try {
 /**
  * Funtion redirection
  *
- * @param [type] $lieu
+ * @param string $lieu
  * @return void
  */
 function redirect_page($lieu){
-  $lieu_chat = 'Location: ' . $lieu;
+  $destination = '../../controler/index.php?pg='.md5($lieu);
+  $lieu_chat = 'Location: ' . $destination;
   return header($lieu_chat);
 }
 
 /**
  * Fonction de redirection lorsqu'il y a erreur
  *
- * @param String $lieu
- * @param String $errorType
+ * @param string $lieu
+ * @param string $errorType
  * @return void
  */
-function errorRedirect( $lieu, $errorType ){
-  $url = $lieu.'?error='.md5( $errorType );
-  redirect_page( $url );
+function errorRedirect( $lieu, $other, $errorType ){
+  $url = '../../controler/index.php?pg='.md5($lieu).'&error='.md5( $errorType ).'&'.$other;
+  $lieu_chat = 'Location: ' . $url;
+  return header($lieu_chat);
 }
 
 /**
  * Fonction qui affiche les differentes types d'erreur
  *
- * @param [type] $errorType
+ * @param string $errorType
  * @return void
  */
 function erroExist($errorType){
@@ -57,6 +59,12 @@ function erroExist($errorType){
     break;
     case md5('erreurC'):
       echo ($erreurC);
+    break;
+    case md5('erreurChamps'):
+      echo ($erreurChamps);
+    break;
+    case md5('erreurPass'):
+      echo ($erreurPass);
     break;
     case md5('erreurIns'):
       echo ($erreurIns);
@@ -97,7 +105,7 @@ function clean_pass( $pass ): string{
 /**
  * Verification mail
  *
- * @param String $email
+ * @param string $email
  * @return bool
  */
 function mailExist($email):bool{
@@ -173,7 +181,7 @@ function get_post_question():array{
  * @param integer $id_question
  * @return array
  */
-function get_post_quest_answ( $id_question ): array{
+function get_post_quest_answ( int $id_question ): array{
   global $connexion;
   $sql_ans = $connexion->prepare(
     'SELECT * FROM post WHERE type_post = :type_post AND id_post_question = :id_quest ORDER BY id_post DESC'
@@ -198,7 +206,7 @@ function get_post_quest_answ( $id_question ): array{
  * @param integer $id_user
  * @return array
  */
-function get_user( $id_user ): array{
+function get_user( int $id_user ): array{
   global $connexion;
   $sql_user = $connexion->prepare(
     'SELECT * FROM inscris WHERE id_author = :id_user'
@@ -236,12 +244,36 @@ function get_niveau(): array{
 }
 
 /**
+ * Fonction de récupération du cv
+ *
+ * @param integer $id_user
+ * @return array
+ */
+function get_cv( int $id_user ): array{
+  global $connexion;
+  $sql_cv = $connexion->prepare(
+    'SELECT * FROM cv WHERE id_author = :id_user'
+  );
+  $sql_cv->execute(
+    array(
+      'id_user' => $id_user
+    )
+  );
+  $cv = $sql_cv->fetch();
+  if( $cv != NULL )
+    return $cv;
+  else
+    return array();
+  $sql_cv->closeCursor();
+}
+
+/**
  * Récupération du lien de l'image
  *
- * @param [type] $id_post
+ * @param integer $id_post
  * @return void
  */
-function get_ling_img( $id_post ){
+function get_ling_img( int $id_post ){
   global $connexion;
   $sql_img = $connexion->prepare(
     'SELECT lien FROM img WHERE id_post = :id_post OR id_cv = :id_cv'
@@ -263,45 +295,209 @@ function get_ling_img( $id_post ){
 /**
  * Récupérer un mail
  *
- * @param [type] $id_user
+ * @param integer $id_user
  * @return string
  */
 function get_email( $id_user ):string{
-  global $connexion;
-  $sql_mail = $connexion->prepare(
-    'SELECT email_author FROM inscris WHERE id_author = :mail'
-  );
-  $sql_mail->execute(
-    array(
-      'mail' => $id_user
-    )
-  );
-  $email = $sql_mail->fetch();
-  if($email != NULL)
-    return $email['email_author'];
+  $user = get_user( $id_user );
+  if( $user == NULL )
+    return $email = '';
   else
-    return $email='';
+    return $user['email_author'];
 }
 
 /**
- * Fonction de récupération du cv
+ * Nom d'un utilisateur
  *
- * @param [type] $id_user
- * @return array
+ * @param integer $id_user
+ * @return string
  */
-function get_cv( $id_user ): array{
-  global $connexion;
-  $sql_cv = $connexion->prepare(
-    'SELECT * FROM cv WHERE id_author = :id_user'
-  );
-  $sql_cv->execute(
-    array(
-      'id_user' => $id_user
-    )
-  );
-  $cv = $sql_cv->fetch();
-  if( $cv != NULL )
-    return $cv;
+function get_user_nom( int $id_user ):string{
+  $user = get_user( $id_user );
+  if( $user == NULL )
+    return $nom = '';
   else
-    return array();
+    return $user['nom_author'];
+}
+
+/**
+ * Prenom d'un utilisateur
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_user_prenom( int $id_user ):string{
+  $user = get_user( $id_user );
+  if( $user == NULL )
+    return $prenom = '';
+  else
+    return $user['prenom_author'];
+}
+
+/**
+ * Nom sur cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_nom( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $nom = '';
+  else
+    return $cv['nom'];
+}
+
+/**
+ * Prénom sur CV
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_prenom( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $prenom = '';
+  else
+    return $cv['prenom'];
+}
+
+/**
+ * Numéro de téléphone cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_tel( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $tel = '';
+  else
+    return $cv['tel'];
+}
+
+/**
+ * Date de naissance cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_nais( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $date_nais = '';
+  else
+    return $cv['date_nais'];
+}
+
+/**
+ * Langue cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_langue( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $langue = '';
+  else
+    return $cv['langue'];
+}
+
+/**
+ * Adresse cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_adresse( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $adresse = '';
+  else
+    return $cv['adresse'];
+}
+
+/**
+ * Profile cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_profil( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $profil = '';
+  else
+    return $cv['profil'];
+}
+
+/**
+ * Expériences cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_experience( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $experience = '';
+  else
+    return $cv['experience'];
+}
+
+/**
+ * Competences cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_competences( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $competences = '';
+  else
+    return $cv['competences'];
+}
+
+/**
+ * diplome cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_diplome( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $diplome = '';
+  else
+    return $cv['diplome'];
+}
+
+/**
+ * Qualités cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_qualites( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $qualites = '';
+  else
+    return $cv['qualites'];
+}
+
+/**
+ * Loisirs cv
+ *
+ * @param integer $id_user
+ * @return string
+ */
+function get_cv_loisirs( int $id_user ): string{
+  $cv = get_cv( $id_user );
+  if( $cv == NULL )
+    return $loisirs = '';
+  else
+    return $cv['loisirs'];
 }
