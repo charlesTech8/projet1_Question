@@ -30,7 +30,7 @@ $id_question = clean_champs(($_REQUEST[md5('id_question')]));
                     <form action="" method="">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">COMMENTER ...</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8">Apporter une solution</textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Commentaire ..." rows="8"></textarea>
                         </div>
                     </form>
                 </div>
