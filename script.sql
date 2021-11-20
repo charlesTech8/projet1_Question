@@ -20,7 +20,7 @@ CREATE TABLE inscris(
     email_author VARCHAR(255) NOT NULL,
     password_author VARCHAR(50) NOT NULL,
     id_niveau INTEGER,
-    tmp VARCHAR(5) NOT NULL,
+    tmp BIGINT(20) NOT NULL,
     PRIMARY KEY( id_author ),
     FOREIGN KEY( id_niveau ) REFERENCES niveau( id_niveau )
 );
@@ -46,6 +46,7 @@ CREATE TABLE cv(
 
 CREATE TABLE post(
     id_post INTEGER NOT NULL AUTO_INCREMENT,
+    post_title TEXT,
     contenu_q_r TEXT,
     date_send DATE NOT NULL,
     type_post VARCHAR(20) NOT NULL,

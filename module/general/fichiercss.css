@@ -3,7 +3,7 @@ nav {
     position: fixed;
     top: 0px;
     left: 0px;
-    height: 105px;
+    height: 75px;
     background: rgba(0, 0, 0, 0.5);
     z-index: 9;
 }
@@ -17,7 +17,7 @@ nav .Center {
 
 nav .logo {
     padding: 30px 0px 0px 0px;
-    padding-top: 15px;
+    padding-top: 0px;
     width: 220px;
     float: left;
     transition: all 0.3s;
@@ -61,7 +61,7 @@ nav .logo h1 a span {
     float: left;
     padding: 0px;
     margin: 0px;
-    height: 105px;
+    height: 70px;
     position: relative;
     transition: all 0.3s ease;
 }
@@ -76,7 +76,7 @@ nav .logo h1 a span {
     display: block;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    padding-top: 35px;
+    padding-top: 20px;
 }
 
 body {

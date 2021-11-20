@@ -4,6 +4,9 @@
  * connexion et d'inscription
  */
 
+require 'vendor/autoload.php';
+use \Mailjet\Resources;
+
 /**
  * Appel à la fonction de la connexion et des autres fonctions
  */
@@ -52,20 +55,59 @@ if (isset($_POST['actionCon'])) {
                                 :id_user, :nom, :prenom, :email, :pwd, :id_niveau, :tmp 
                             )'
                         );
-                        $sql_ins->execute(
-                            array(
-                                'id_user'   => NULL,
-                                'nom'       => $nom,
-                                'prenom'    => $prenom,
-                                'email'     => $email,
-                                'pwd'       => $pwd1,
-                                'id_niveau' => 2,
-                                'tmp'       => 'n'
-                            )
-                        );
-                        $sql_ins->closeCursor();
-                        setcookie('email', $email, time() + 365*24*3600, null, null, false, true);
-                        redirect_page( 'validationMail' );
+                        $key = cleActivation(); //Récupération de la clé d'activation
+
+                        //Confirmation de mail*********************************************************************
+
+                        
+                        $mj = new \Mailjet\Client('93496347bcb32d8cef5550f93bd26e72','dfd117c0a2620031a8a564831d792961',true,['version' => 'v3.1']);
+                        $ma = urlencode($email);
+                        $body = [
+                        'Messages' => [
+                            [
+                            'From' => [
+                                'Email' => "gboyoucharles.tech@gmail.com",
+                                'Name' => "WE CAN"
+                            ],
+                            'To' => [
+                                [
+                                'Email' => $email,
+                                'Name' => $nom
+                                ]
+                            ],
+                            'Subject' => "Confirmation de mail",
+                            'TextPart' => "Confirmez votre adresse e-mail",
+                            'HTMLPart' => "
+                            <a href='http://127.0.0.1/projet1Question/module/connect_mod/confirmation.php?email=".$ma."&key=".$key."'>Confirmez votre compte en cliquant ici</a>
+                            <p>Votre code de confirmation est : <h3>".$key."</h3></p>
+                            ",
+                            'CustomID' => "AppGettingStartedTest"
+                            ]
+                        ]
+                        ];
+                        try {
+                            $response = $mj->post(Resources::$Email, ['body' => $body]);
+                            $response->success() && var_dump($response->getData());
+                            $sql_ins->execute(
+                                array(
+                                    'id_user'   => NULL,
+                                    'nom'       => $nom,
+                                    'prenom'    => $prenom,
+                                    'email'     => $email,
+                                    'pwd'       => $pwd1,
+                                    'id_niveau' => 2,
+                                    'tmp'       => $key
+                                )
+                            );
+                            $sql_ins->closeCursor();
+                            setcookie('email', $email, time() + 365*24*3600, null, null, false, true);
+                            errorRedirect('connexion','','valideTonMail');
+                            exit;
+                        } catch (\Throwable $th) {
+                            errorRedirect('connexion','', 'erreurC');
+                            exit;
+                        }
+                        //*************************************************************************************** */
                     }
                 }
             }

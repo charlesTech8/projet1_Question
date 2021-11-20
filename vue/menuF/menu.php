@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="Center">
         <div class="logo">
             <h1>
@@ -11,24 +11,24 @@
 
         <div class="collapse navbar-collapse Navigation" id="navbarSupportedContent">
             <ul>
-                <li>
+                <li class="nav-item <?php if($_REQUEST['pg'] == md5('accueil')) echo 'active'; ?>">
                     <a href="../controler/index.php?pg=<?php echo md5('accueil') ?>">Accueil</a>
                     <span class="menu-item-bg"></span>
                 </li>
-                <li>
-                    <a href="#question">Questions</a>
+                <li class="nav-item <?php if($_REQUEST['pg'] == md5('question') || $_REQUEST['pg'] == md5('askform') || $_REQUEST['pg'] == md5('showask')) echo 'active'; ?>">
+                    <a href="../controler/index.php?pg=<?php echo md5('question') ?>">Questions</a>
                     <span class="menu-item-bg"></span>
                 </li>
-                <li>
-                    <a href="#about">About</a>
+                <li class="nav-item <?php if($_REQUEST['pg'] == md5('about')) echo 'active'; ?>">
+                    <a href="../controler/index.php?pg=<?php echo md5('about') ?>">About</a>
                     <span class="menu-item-bg"></span>
                 </li>
-                <li>
+                <li class="nav-item <?php if($_REQUEST['pg'] == md5('connexion')) echo 'active'; ?>">
                     <a href="../controler/index.php?pg=<?php echo md5('connexion') ?>">Connexion</a>
                     <span class="menu-item-bg"></span>
                 </li>
-
             </ul>
         </div>
     </div>
 </nav>
+<div class="pt-5"></div>

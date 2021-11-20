@@ -1,5 +1,6 @@
 <?php
 $erreurCon = '<p class="alert alert-danger" role="alert">Aucun compte ou adresse email de ce type.
+<br> Vérifier si vous avez déjà confirmer votre adresse email.
 <br> Vérifier votre adresse et réessayer... Merci :)
 </p>';
 
@@ -24,4 +25,14 @@ $erreurChamps = '<p class="alert alert-danger" role="alert">Veillez remplir les 
 
 $erreurPass = '<p class="alert alert-danger" role="alert">Mot de passe invalide
 <br><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg">cliqué ici</a> et entrez un mot de passe identique.  Merci :)
+</p>';
+
+$errorMailNonExist = '<p class="alert alert-danger" role="alert">Ce compte est déjà valide ou n\'existe pas. Merci
+</p>';
+
+$mailValide = '<p class="alert alert-success" role="alert">Compte validé avec succès veillez-vous connecter. Merci
+</p>';
+
+$valideTonMail = '<p class="alert alert-success" role="alert">Consulter votre boite afin de confirmer votre adresse. 
+<br><a href="#" data-toggle="modal" data-target=".validation">cliquez ici</a> pour saisir votre code de confirmation. Merci
 </p>';

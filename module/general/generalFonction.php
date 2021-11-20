@@ -75,6 +75,15 @@ function erroExist($errorType){
     case md5('first'):
       echo ($erreurFirst);
     break;
+    case md5('errorMailNonExist'):
+      echo ($errorMailNonExist);
+    break;
+    case md5('mailValide'):
+      echo ($mailValide);
+    break;
+    case md5('valideTonMail'):
+      echo ($valideTonMail);
+    break;
     default:
       echo ($erreurFirst);
     break;
@@ -136,12 +145,13 @@ function mailExist($email):bool{
 function connectMail($mail, $pwd): int{
   global $connexion;
   $sql_mail = $connexion->prepare(
-    'SELECT id_author FROM inscris WHERE email_author = :email AND password_author = :pwd'
+    'SELECT id_author FROM inscris WHERE email_author = :email AND password_author = :pwd AND tmp = :tmp'
   );
   $sql_mail->execute(
     array(
       'email' => $mail,
-      'pwd'   => $pwd
+      'pwd'   => $pwd,
+      'tmp'   => -1
     )
   );
   $id = $sql_mail->fetch();
@@ -173,6 +183,124 @@ function get_post_question():array{
   else
     return array();
   $sql_post_quest->closeCursor();
+}
+
+/**
+ * Les 10 dernieres questions
+ *
+ * @return array
+ */
+function get_last_question():array{
+  global $connexion;
+  $sql_post_quest = $connexion->prepare(
+    'SELECT * FROM post WHERE type_post = :type_post ORDER BY id_post DESC LIMIT 10'
+  );
+  $sql_post_quest->execute(
+    array(
+      'type_post' => '_question'
+    )
+  );
+  $quest = $sql_post_quest->fetchAll();
+  if( $quest != NULL )
+    return $quest;
+  else
+    return array();
+  $sql_post_quest->closeCursor();
+}
+
+/**
+ * Récupérer une question
+ *
+ * @param integer $id_question
+ * @return array
+ */
+function get_question( int $id_question ):array{
+  global $connexion;
+  $sql_post_quest = $connexion->prepare(
+    'SELECT * FROM post WHERE id_post = :id_question AND type_post = :type_post'
+  );
+  $sql_post_quest->execute(
+    array(
+      'id_question' => $id_question,
+      'type_post'   => '_question'
+    )
+  );
+  $quest = $sql_post_quest->fetch();
+  if( $quest != NULL )
+    return $quest;
+  else
+    return array();
+  $sql_post_quest->closeCursor();
+}
+
+/**
+ * Title de la question
+ *
+ * @param integer $id_question
+ * @return string
+ */
+function get_question_title( int $id_question ):string{
+  $question = get_question( $id_question );
+  if($question != NULL)
+    return $question['post_title'];
+  else
+    return $question = '';
+}
+
+/**
+ * Contenu d'une question
+ *
+ * @param integer $id_question
+ * @return string
+ */
+function get_question_contenu( int $id_question ):string{
+  $question = get_question( $id_question );
+  if($question != NULL)
+    return $question['contenu_q_r'];
+  else
+    return $question = '';
+}
+
+/**
+ * Date de publication
+ *
+ * @param integer $id_question
+ * @return string
+ */
+function get_question_date( int $id_question ):string{
+  $question = get_question( $id_question );
+  if($question != NULL)
+    return $question['date_send'];
+  else
+    return $question = '';
+}
+
+/**
+ * Id de l'auteur de la question
+ *
+ * @param integer $id_question
+ * @return integer
+ */
+function get_question_user_id( int $id_question ):int{
+  $question = get_question( $id_question );
+  if($question != NULL)
+    return $question['id_author'];
+  else
+    return $question = 0;
+}
+
+/**
+ * Nom et Prenom de l'auteur de la question
+ *
+ * @param integer $id_question
+ * @return string
+ */
+function get_question_user_name( int $id_question ):string{
+  $id_u = get_question_user_id( $id_question );
+  if($id_u != 0)
+    return $name = get_user_prenom( $id_u ).'@'.get_user_nom( $id_u );
+  else
+    return $name = '';
 }
 
 /**
@@ -500,4 +628,18 @@ function get_cv_loisirs( int $id_user ): string{
     return $loisirs = '';
   else
     return $cv['loisirs'];
+}
+
+/**
+ * Fonction de la clé d'activation du mail
+ *
+ * @return string
+ */
+function cleActivation(): string{
+  $longueurKey = 15;
+  $key = "";
+  for ($i = 1; $i < $longueurKey; $i++) {
+    $key .= mt_rand(0, 9);
+  }
+  return $key;
 }
