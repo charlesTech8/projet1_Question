@@ -81,41 +81,8 @@
                                 <input onkeyup="checkPass();" type="password" name="confirmPwd" class="form-control" id="confirmPwd" required>
                                 <div style="color: red;" id="info"></div>
                             </div>
-
                             <div class="col-md-6 mb-4">
                                 <button type="submit" class="btn btn-primary">S'inscrire</button>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade validation" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Validation d'email</h5>
-                <button style="color:red;" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="GET" action="../module/connect_mod/confirmation.php" enctype="multipart/form-data">
-                            <div class="col-sm-12 mb-4">
-                                <label for="email">Entrez votre mail</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="identifiantd@nomdomaine" value="<?php if ( isset( $_COOKIE['email'] ) )  echo clean_champs($_COOKIE['email']); ?>" required>
-                            </div>
-                            <div class="col-sm-12 mb-4">
-                                <label for="key">Votre code</label>
-                                <input type="number" min="0" class="form-control" name="key" id="key" placeholder="0000000000" required>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <button type="submit" class="btn btn-primary">S'authentifier</button>
                             </div>
                         </div>
                     </fieldset>

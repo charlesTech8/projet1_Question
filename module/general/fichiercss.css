@@ -105,3 +105,7 @@ body {
 .mobile {
     display: none;
 }
+
+#forms {
+    display: none;
+}

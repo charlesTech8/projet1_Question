@@ -24,8 +24,24 @@ try {
  * @param string $lieu
  * @return void
  */
-function redirect_page($lieu){
+function redirect_page(string $lieu){
   $destination = '../../controler/index.php?pg='.md5($lieu);
+  $lieu_chat = 'Location: ' . $destination;
+  return header($lieu_chat);
+}
+
+/**
+ * Redirection function
+ *
+ * @param string $lieu
+ * @return void
+ */
+function errorRedirect1(string $lieu, string $error){
+  if($error != '')
+    $destination = '../controler/index.php?pg='.md5($lieu ).'&error';
+  else
+    $destination = '../controler/index.php?pg='.md5($lieu );
+
   $lieu_chat = 'Location: ' . $destination;
   return header($lieu_chat);
 }
@@ -312,7 +328,7 @@ function get_question_user_name( int $id_question ):string{
 function get_post_quest_answ( int $id_question ): array{
   global $connexion;
   $sql_ans = $connexion->prepare(
-    'SELECT * FROM post WHERE type_post = :type_post AND id_post_question = :id_quest ORDER BY id_post DESC'
+    'SELECT * FROM post WHERE type_post = :type_post AND id_post_question = :id_quest ORDER BY id_post DESC LIMIT 10'
   );
   $sql_ans->execute(
     array(
