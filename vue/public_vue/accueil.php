@@ -58,31 +58,31 @@
         <!-- Three columns of text below the carousel -->
         <div class="row pt-5">
             <div class="col-sm-2 pr-5">
-                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/code.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2 style="padding-left: 35px;">Html</h2>
             </div>
             <div class="col-sm-2">
-                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/logohtml.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2 style="padding-left: 45px;">Css</h2>
 
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-2">
-                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2>JavaScript</h2>
 
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-2">
-                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2 style="padding-left: 45px;">Php</h2>
 
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-2">
-                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2 style="padding-left: 35px;">Java</h2>
 
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-2">
-                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2 style="padding-left: 40px;">Dart</h2>
 
             </div><!-- /.col-lg-4 -->

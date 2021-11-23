@@ -50,7 +50,8 @@ CREATE TABLE post(
     contenu_q_r TEXT,
     date_send DATE NOT NULL,
     type_post VARCHAR(20) NOT NULL,
-    id_author INTEGER NOT NULL,
+    id_author INTEGER ,
+    fermer VARCHAR(20),
     FOREIGN KEY (id_author) REFERENCES inscris(id_author),
     PRIMARY KEY( id_post )
 );

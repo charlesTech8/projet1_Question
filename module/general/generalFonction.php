@@ -41,7 +41,6 @@ function errorRedirect1(string $lieu, string $error){
     $destination = '../controler/index.php?pg='.md5($lieu ).'&error';
   else
     $destination = '../controler/index.php?pg='.md5($lieu );
-
   $lieu_chat = 'Location: ' . $destination;
   return header($lieu_chat);
 }
@@ -54,9 +53,23 @@ function errorRedirect1(string $lieu, string $error){
  * @return void
  */
 function errorRedirect( $lieu, $other, $errorType ){
-  $url = '../../controler/index.php?pg='.md5($lieu).'&error='.md5( $errorType ).'&'.$other;
+  if(($errorType) == '')
+    $url = '../../controler/index.php?pg='.md5($lieu).'&error='.md5( $errorType ).'&'.$other;
+  else 
+    $url = '../../controler/index.php?pg='.md5($lieu).'&error&'.$other;
   $lieu_chat = 'Location: ' . $url;
   return header($lieu_chat);
+}
+
+/**
+ * Redirection general
+ *
+ * @param string $url
+ * @return void
+ */
+function generalRedirect( string $url ){
+  $destination = 'Location: '.$url;
+  return header( $destination );
 }
 
 /**
@@ -658,4 +671,56 @@ function cleActivation(): string{
     $key .= mt_rand(0, 9);
   }
   return $key;
+}
+
+function close_question( int $id_post ){
+  global $connexion;
+  $sql_ans = $connexion->prepare(
+    'SELECT fermer FROM post WHERE type_post = :type_post AND id_post = :id_quest'
+  );
+  $sql_ans->execute(
+    array(
+      'type_post' => '_question',
+      'id_quest'  => $id_post,
+    )
+  );
+  $ans = $sql_ans->fetch();
+  if( $ans == NULL )
+    return $fermer = "";
+  else
+    return $ans['fermer'];
+}
+
+/**
+ * Type de l'image
+ *
+ * @param string $img
+ * @return boolean
+ */
+function imgType( string $img ):bool{
+  $extension = strtolower( pathinfo( $img, PATHINFO_EXTENSION ) );
+  $valide = array( 'jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF' );
+
+  if ( in_array ( $extension, $valide ) )
+    return true;
+  else
+    return false;
+}
+
+/**
+ * Vérifier si la question n'est pas encore poser
+ *
+ * @param string $title
+ * @return boolean
+ */
+function exist_Question( string $title):bool{
+  global $connexion;
+  $sql_verifie = $connexion->prepare('SELECT id_post FROM post WHERE post_title = :title ');
+  $sql_verifie->execute(array('title' => $title));
+  $nbRow = $sql_verifie->rowCount();
+  if( $nbRow > 0 )
+    return TRUE;
+  else
+    return FALSE;
+  $sql_verifie->closeCursor();
 }
