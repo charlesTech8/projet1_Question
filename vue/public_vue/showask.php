@@ -14,7 +14,7 @@ $id_question = clean_champs(($_REQUEST[md5('id_question')]));
                                 <?php
                                     $contenu =  unserialize( (get_question_contenu($id_question)) );
                                     if( $contenu['details'] != "" ){
-                                        echo stripslashes( $contenu['details'] );
+                                        echo stripslashes( nl2br( $contenu['details'] ) );
                                     }
                                     //stripslashes(get_question_contenu($id_question)); 
                                 ?>
@@ -50,7 +50,7 @@ $id_question = clean_champs(($_REQUEST[md5('id_question')]));
                     if( $contenu['code'] != "" ){
                         ?>
                         <div class="form-group">
-                          <textarea class="form-control" date-ms-editor="false" id="code_form" name="code_form" style="font-size:small; background-color: black;" placeholder="</ >" rows="8"><?=stripslashes( nl2br( $contenu['code'] ) ) ;?></textarea>
+                          <textarea disabled class="form-control" id="code_form" name="code_form" style="font-size:small;color:antiquewhite; background-color: black;" placeholder="</ >" rows="12"><?=stripslashes(( $contenu['code'] ) ) ;?></textarea>
                         </div>
                                     
                         <?php

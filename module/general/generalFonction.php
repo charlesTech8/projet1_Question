@@ -38,7 +38,7 @@ function redirect_page(string $lieu){
  */
 function errorRedirect1(string $lieu, string $error){
   if($error != '')
-    $destination = '../controler/index.php?pg='.md5($lieu ).'&error';
+    $destination = '../controler/index.php?pg='.md5($lieu ).'&error='.md5( $error );
   else
     $destination = '../controler/index.php?pg='.md5($lieu );
   $lieu_chat = 'Location: ' . $destination;
@@ -53,7 +53,7 @@ function errorRedirect1(string $lieu, string $error){
  * @return void
  */
 function errorRedirect( $lieu, $other, $errorType ){
-  if(($errorType) == '')
+  if(($errorType) != '')
     $url = '../../controler/index.php?pg='.md5($lieu).'&error='.md5( $errorType ).'&'.$other;
   else 
     $url = '../../controler/index.php?pg='.md5($lieu).'&error&'.$other;

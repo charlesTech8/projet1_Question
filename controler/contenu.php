@@ -30,6 +30,9 @@ if(!isset($_REQUEST['pg']))
             case md5('about') : 
                 include('../vue/public_vue/about_vue.php');
             break;
+            case md5('deconnexion') : 
+                include('../module/connect_mod/deconnexion.php');
+            break;
             default: 
                 include('../vue/public_vue/accueil.php');
         }
