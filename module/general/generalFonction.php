@@ -223,6 +223,43 @@ function admin( int $id_user ):bool{
   $admin->closeCursor();
 }
 
+/**
+ * Vérifier si administrateur général
+ *
+ * @param integer $id_user
+ * @return boolean
+ */
+function isAdmin( int $id_user ):bool{
+  global $connexion;
+  $sql_admin = $connexion->prepare( 'SELECT id_niveau FROM inscris WHERE id_author = :_id_user AND id_niveau = :_id_niveau' );
+  $sql_admin->execute(
+    array(
+      '_id_user'    => $id_user,
+      '_id_niveau' => 1
+    )
+  );
+  $ok = $sql_admin->rowCount();
+  if( $ok != NULL )
+    return TRUE;
+  else
+    return FALSE;
+  $sql_admin->closeCursor();
+}
+
+/**
+ * Niveau d'un user
+ *
+ * @param integer $id_user
+ * @return integer
+ */
+function get_niveau_user( int $id_user ):int{
+  $niveau = get_user( $id_user );
+  if( $niveau != NULL )
+    return $niveau['tmp'];
+  else
+    return -2;
+}
+
 function get_membre():array{
   global $connexion;
   $admin = $connexion->prepare( 'SELECT * FROM inscris WHERE id_niveau = :id_niv1 OR id_niveau = :id_niv2 ORDER BY id_niveau ASC' );
