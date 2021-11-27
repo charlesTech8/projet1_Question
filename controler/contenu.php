@@ -21,6 +21,9 @@ if(!isset($_REQUEST['pg']))
             case md5('question') : 
                 include('../vue/public_vue/question_vue.php');
             break;
+            case md5('admin') : 
+                include('../vue/admin/admin_vue.php');
+            break;
             case md5('askform') : 
                 include('../vue/public_vue/askform.php');
             break;

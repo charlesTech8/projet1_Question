@@ -112,22 +112,30 @@ $id_question = clean_champs(($_REQUEST[md5('id_question')]));
             ?>
         </div>
         <div class="col-sm-4">
-            <div class="card border-light mb-3">
+        <div class="card border-light mb-3">
                 <div class="card-header">
                     <strong>LES QUESTIONS</strong><br>
                     <a href="../controler/index.php?pg=<?= md5('askform'); ?>">Poser une question</a>
                 </div>
                 <div class="card-body">
-                    <?php
-                    foreach (get_last_question() as $key => $value) {
-                        $id_question1 = $value['id_post'];
-                    ?>
-                        <a style="color: purple;" href="../controler/index.php?pg=<?= md5('showask') . '&' . md5('id_question') . '=' . $id_question1; ?>">
-                            <p><?= stripslashes(get_question_title($id_question1)); ?></p>
-                        </a>
-                    <?php
-                    }
-                    ?>
+                    <table class="table table-hover">
+                        <tbody>
+                            <?php
+                            foreach (get_last_question() as $key => $value) {
+                                $id_question1 = $value['id_post'];
+                            ?>
+                                <tr>
+                                    <th scope="row">
+                                        <a style="color: purple;" href="../controler/index.php?pg=<?= md5('showask') . '&' . md5('id_question') . '=' . $id_question1; ?>">
+                                            <p><?= stripslashes(get_question_title($id_question1)); ?></p>
+                                        </a>
+                                    </th>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

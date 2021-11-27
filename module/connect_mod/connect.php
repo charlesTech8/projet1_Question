@@ -95,7 +95,7 @@ if (isset($_POST['actionCon'])) {
                                     'prenom'    => $prenom,
                                     'email'     => $email,
                                     'pwd'       => $pwd1,
-                                    'id_niveau' => 2,
+                                    'id_niveau' => 3,
                                     'tmp'       => $key
                                 )
                             );

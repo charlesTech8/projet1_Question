@@ -139,6 +139,39 @@ function clean_pass( $pass ): string{
     return md5( sha1( $pass ) );
 }
 
+/**
+ * Mettre en majuscule une chaine de caractère
+ *
+ * @param string $text_min
+ * @return string
+ */
+function text_maj( string $text_min ):string{
+  return strtoupper($text_min);
+}
+
+/**
+ * Recuperation de la discussion generale
+ *
+ * @return array
+ */
+function get_general_chat():array{
+  global $connexion;
+  $get_general_chat = $connexion->prepare(
+    'SELECT * FROM post WHERE type_post = :type_post ORDER BY id_post ASC LIMIT 25'
+  );
+  $get_general_chat->execute(
+    array(
+      'type_post'   => '_chat_general'
+    )
+  );
+  $sql_ans = $get_general_chat->fetchAll();
+  if( $sql_ans != NULL )
+    return $sql_ans;
+  else
+    return array();
+  $get_general_chat->closeCursor();
+}
+
 
 /**
  * Verification mail
@@ -162,6 +195,50 @@ function mailExist($email):bool{
   }
 
   $sql_verifie->closeCursor();
+}
+
+/**
+ * Verifier le niveau d'un visiteur
+ *
+ * @param integer $id_user
+ * @return boolean
+ */
+function admin( int $id_user ):bool{
+  global $connexion;
+  $admin = $connexion->prepare( 'SELECT * FROM inscris WHERE id_author = :id_user AND (id_niveau = :id_niv1 OR id_niveau = :id_niv2)' );
+  $admin->execute(
+    array(
+      'id_user' => $id_user,
+      'id_niv1' => 1,
+      'id_niv2' => 2
+    )
+  );
+
+  $ok = $admin->rowCount();
+  if($ok > 0)
+    return TRUE;
+  else
+    return FALSE;
+  
+  $admin->closeCursor();
+}
+
+function get_membre():array{
+  global $connexion;
+  $admin = $connexion->prepare( 'SELECT * FROM inscris WHERE id_niveau = :id_niv1 OR id_niveau = :id_niv2 ORDER BY id_niveau ASC' );
+  $admin->execute(
+    array(
+      'id_niv1' => 1,
+      'id_niv2' => 2
+    )
+  );
+  $admin_get = $admin->fetchAll();
+  if($admin_get != NULL)
+    return $admin_get;
+  else
+    return array();
+
+  $admin->closeCursor();
 }
 
 /**
@@ -379,6 +456,20 @@ function get_user( int $id_user ): array{
   else
     return array();
   $sql_user->closeCursor();
+}
+
+/**
+ * Nombre d'inscrire
+ *
+ * @return integer
+ */
+function get_number_user(  ):int{
+  global $connexion;
+  $sql = $connexion->prepare( 'SELECT id_author FROM inscris' );
+  $sql->execute();
+  $nbre = $sql->rowCount();
+  return $nbre;
+  $sql->closeCursor();
 }
 
 /**

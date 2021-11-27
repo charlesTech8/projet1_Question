@@ -73,7 +73,7 @@
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-2">
                 <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2 style="padding-left: 45px;">Php</h2>
+                <h2>Php/MySQL</h2>
 
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-2">
