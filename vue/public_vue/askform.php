@@ -15,7 +15,7 @@ if (!isset($_SESSION['id_user']) || empty($_SESSION['id_user'])) {
             if(isset( $_REQUEST['erreur'] ) && $_REQUEST['erreur'] == 'champs'){
               ?>
               <p class="alert alert-danger">
-                Veillez bien remplir en donnant plus de détails aux amis afin qu'ils puissent vous aider. Merci
+                Veuillez bien remplir en donnant plus de détails aux amis afin qu'ils puissent vous aider. Merci
               </p>
               <?php
             }

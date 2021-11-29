@@ -19,8 +19,8 @@
                     <a href="../controler/index.php?pg=<?php echo md5('question') ?>">Questions</a>
                     <span class="menu-item-bg"></span>
                 </li>
-                <li class="nav-item <?php if (isset($_REQUEST['pg']) && ($_REQUEST['pg'] == md5('about'))) echo 'active'; ?>">
-                    <a href="../controler/index.php?pg=<?php echo md5('about') ?>">About</a>
+                <li class="nav-item <?php if(isset($_REQUEST['pg']) && ($_REQUEST['pg'] == md5('contactus'))) echo 'active'; ?>">
+                    <a href="../controler/index.php?pg=<?php echo md5('contactus') ?>">Contact</a>
                     <span class="menu-item-bg"></span>
                 </li>
                 <?php
