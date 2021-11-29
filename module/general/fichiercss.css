@@ -44,12 +44,6 @@ nav .logo h1 a span {
     color: #ff9000;
 }
 
-.Navigation {
-    float: right;
-    width: 68.18%;
-    margin-right: 11px;
-}
-
 .Navigation ul {
     list-style: none;
     margin: 0px;
