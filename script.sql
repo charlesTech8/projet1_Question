@@ -18,7 +18,7 @@ CREATE TABLE inscris(
     nom_author VARCHAR(30) NOT NULL,
     prenom_author VARCHAR(30) NOT NULL,
     email_author VARCHAR(255) NOT NULL,
-    password_author VARCHAR(50) NOT NULL,
+    password_author VARCHAR(50),
     id_niveau INTEGER,
     tmp BIGINT(20) NOT NULL,
     PRIMARY KEY( id_author ),

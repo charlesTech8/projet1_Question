@@ -156,9 +156,22 @@ function text_maj( string $text_min ):string{
  */
 function get_general_chat():array{
   global $connexion;
-  $get_general_chat = $connexion->prepare(
-    'SELECT * FROM post WHERE type_post = :type_post ORDER BY id_post ASC LIMIT 25'
+  $get = $connexion->prepare(
+    'SELECT * FROM post WHERE type_post = :type_post'
   );
+  $get->execute(
+    array(
+      'type_post'   => '_chat_general'
+    )
+  );
+  $nbre = $get->rowCount();
+  $get->closeCursor();
+
+  if($nbre < 10)
+    $sq = 'SELECT * FROM post WHERE type_post = :type_post ORDER BY id_post ASC LIMIT 10';
+  else
+    $sq = 'SELECT * FROM post WHERE type_post = :type_post ORDER BY id_post ASC LIMIT '.($nbre-10).','.$nbre;
+  $get_general_chat = $connexion->prepare( $sq );
   $get_general_chat->execute(
     array(
       'type_post'   => '_chat_general'
@@ -170,6 +183,25 @@ function get_general_chat():array{
   else
     return array();
   $get_general_chat->closeCursor();
+}
+
+function isMembre( string $email, int $key ):int{
+  global $connexion;
+  $sql = $connexion->prepare(
+    'SELECT id_author FROM inscris WHERE email_author = :email AND tmp = :tmp'
+  );
+  $sql->execute(
+    array(
+      'email' => $email,
+      'tmp'   => $key
+    )
+  );
+  $idm = $sql->fetch();
+  if( $idm != NULL )
+    return $idm['id_author'];
+  else{
+    return -1;
+  }
 }
 
 

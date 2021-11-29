@@ -15,6 +15,9 @@ if(!isset($_REQUEST['pg']))
             case md5('connexion') : 
                 include('../vue/connect_vue/connect.php');
             break;
+            case md5('confirmation') : 
+                include('../vue/connect_vue/confirmationMembre.php');
+            break;
             case md5('accueil') : 
                 include('../vue/public_vue/accueil.php');
             break;
