@@ -18,6 +18,9 @@ if(!isset($_REQUEST['pg']))
             case md5('accueil') : 
                 include('../vue/public_vue/accueil.php');
             break;
+            case md5('contactus') : 
+                include('../vue/connect_vue/contactus.php');
+            break;
             case md5('question') : 
                 include('../vue/public_vue/question_vue.php');
             break;
