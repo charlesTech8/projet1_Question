@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
-                    <p class="alert alert-danger">Désolé une telle question a été déjà poser.</p>
+                    <p class="alert alert-danger">Désolé une telle question a été déjà posée</p>
                 </div>
             </div>
         <?php
