@@ -36,13 +36,12 @@
         <!-- Grid column -->
         <div class="col-sm-4 mx-auto mb-4">
           <!-- Content -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            WE CAN
-          </h6>
-          <p>
-            Nous vous donnons la possibilité de retrouver vos documents et épreuves sans problème.<br>
-            De plus vous avez la possibilité de discuter avec vos amis <?php if(!isset( $_SESSION['id'] ) ) echo 'sur <strong><a href="index.php?pg=presentation">EliChat</a></strong>'; ?> à partir d'ici.<br>
-            Merci pour la confiance :)
+          <h3 class="text-uppercase fw-bold mb-4">
+           Qui sommes-nous?
+          </h3>
+          <p >
+            <!--texte de presentation-->
+            We can est une plateforme d'echange concu pour des etudiants en informatique et par des etudiants en informatique. Son but est de creer un large reseau de professionnels de l'IT au Benin et dans la sous-region, ou les utilisateurs pourront partager leurs experiences, preoccupations, et opportunites.
           </p>
         </div>
         <!-- Grid column -->
@@ -50,20 +49,17 @@
         <!-- Grid column -->
         <div class="col-ms-2 mx-auto mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            PAGE
-          </h6>
+          <h3 class="text-uppercase fw-bold mb-4">
+            PAGES
+          </h3>
           <p>
-            <a href="index.php?pg=cours" class="text-reset">Cours</a>
+            <a href="../controler/index.php?pg=<?php echo md5('accueil') ?>" class="text-reset">Acceuil</a>
           </p>
           <p>
-            <a href="index.php?pg=epreuve" class="text-reset">Epreuve</a>
+            <a href="../controler/index.php?pg=<?php echo md5('question') ?>" class="text-reset">Questions</a>
           </p>
           <p>
-            <a href="index.php?pg=presentation" class="text-reset">Profile</a>
-          </p>
-          <p>
-            <a href="index.php?pg=liste_msg" class="text-reset">Discussion</a>
+            <a href="index.php?pg=contactme" class="text-reset">Contacts</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -72,17 +68,13 @@
         <div class="col-ms-2 mx-auto mb-4">
           <!-- Links -->
           </p>
-          <p>
-            <a href="index.php?pg=contactme" class="text-reset">Contact</a>
-          </p>
-          <p>
-            <a href="index.php?pg=aboutme" class="text-reset">About</a>
-          </p>
-          <p><i class="bi bi-home me-3"></i> BENIN/COTONOU </p>
+          
+          
           <p>
           <i class="bi bi-envelope me-3"></i>
-            <a href="mailto:gboyoucharles5@gmail.com">Ecrire au programmeur</a>
+            <a href="mailto:gboyoucharles5@gmail.com">NOUS ECRIRE</a>
           </p>
+          <p><i class="bi bi-home me-3"></i> BENIN/COTONOU </p>
         </div>
         <!-- Grid column -->
 
@@ -94,7 +86,7 @@
 
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-  Copyright © 2021
+  Copyright © 2021 WE CAN
   </div>
   <!-- Copyright -->
 </footer>
