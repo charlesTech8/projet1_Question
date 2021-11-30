@@ -7,6 +7,29 @@ function hideThis(_div) {
         obj.style.display = "block";
 }
 
+$(function() {
+
+
+    $("#msgForm").submit(function(e) {
+        e.preventDefault();
+        var msg = $('#msg').val();
+        var iduser = $('#id_author').val();
+        var action = $('#sendMsg').val();
+        $.ajax({
+            type: 'post',
+            url: '../module/connect_mod/admin_mod.php',
+            data: {
+                action: action,
+                msg: msg,
+                iduser: iduser
+            },
+            cache: false,
+            success: function(reponse) {}
+        });
+        return false;
+    });
+});
+
 // function checkPass() {
 //     var pass1 = $("#pwd").val();
 //     var passConfirm = $("#confirmPwd").val();
