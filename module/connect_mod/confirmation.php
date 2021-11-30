@@ -1,6 +1,7 @@
 <?php
 //Nous allons procéder à la confirmation du mail d'un utilisateur;
 require_once('../general/generalFonction.php');
+//si l'email et la clé exitent et sont renseigner alors on récupère les informations
 if( isset( $_GET['email'], $_GET['key'] ) AND !empty( $_GET['email'] ) AND !empty( $_GET['key'] ) ){
     $email = clean_champs( urldecode( $_GET['email'] ) );
     $key = clean_champs( $_GET['key'] );

@@ -13,13 +13,16 @@ use \Mailjet\Resources;
 require_once( '../general/generalFonction.php' );
 
 //IDEE
-//Pour l'email je dois utiliser les cockier pour enregistre l'email d'un utilisateur deja inscris
+//Pour l'email je dois utiliser les cookie pour enregistre l'email d'un utilisateur deja inscris
 
+//connection pour un utilisateur possédant un compte
 if (isset($_POST['actionCon'])) {
     if ($_POST['actionCon'] == 'connexion') {
+        //forcer l'utilisateur à entrer un email et un mot de pass valide en interdisant les injections sql
         $email = clean_champs($_POST['email']);
         $pwd = clean_pass($_POST['pwd']);
-
+        
+        //récupéré l'id de l'utilisateur pour vérifier si ce dernier a un compte
         if (($id_us = connectMail($email, $pwd)) != -1) {
             $_SESSION['id_user'] = $id_us;
             redirect_page('accueil');
@@ -28,12 +31,14 @@ if (isset($_POST['actionCon'])) {
             exit;
         }
     } else if ($_POST['actionCon'] == 'inscrip') {
+        //si les variables email et mot de pass exitent et sont vident alors le programme renvoie une erreur si non on récupère les informations
         if (isset($_POST['email']) && isset($_POST['pwd'])) {
             $url = 'nom=' . $_POST['nom'] . '&prenom=' . $_POST['prenom'] . '&email=' . $_POST['email'];
             if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['email']) || empty($_POST['pwd']) || empty($_POST['confirmPwd'])) {
                 errorRedirect('connexion', $url, 'erreurChamps');
                 exit;
             } else {
+                //on vérifie si l'email exite puis on envoie un mail de confirmation. Si non l'utilisateur sera obligé de créer un compte
                 $nom = clean_champs( $_POST['nom'] );
                 $prenom = clean_champs( $_POST['prenom'] );
                 $email = clean_champs( $_POST['email'] );

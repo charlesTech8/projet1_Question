@@ -78,7 +78,7 @@
                             </div>
                             <div class="col-sm-6 mb-4">
                                 <label for="email">Confirmation *</label>
-                                <input onkeyup="checkPass();" type="password" name="confirmPwd" class="form-control" id="confirmPwd" required>
+                                <input onkeyup="checkPass();" type="password" name="confirmPwd" class="form-control" id="confirmPwd" minlength="8" required>
                                 <div style="color: red;" id="info"></div>
                             </div>
                             <div class="col-md-6 mb-4">
