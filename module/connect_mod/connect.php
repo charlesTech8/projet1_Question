@@ -13,7 +13,7 @@ use \Mailjet\Resources;
 require_once( '../general/generalFonction.php' );
 
 //IDEE
-//Pour l'email je dois utiliser les cockier pour enregistre l'email d'un utilisateur deja inscris
+//Pour l'email je dois utiliser les cookies pour enregistrer l'email d'un utilisateur deja inscris
 
 if (isset($_POST['actionCon'])) {
     if ($_POST['actionCon'] == 'connexion') {

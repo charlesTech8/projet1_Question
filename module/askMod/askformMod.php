@@ -1,14 +1,18 @@
 <?php
 //Traitement des questions et commentaire
 require_once('../general/generalFonction.php');
+//Verification de l'existence de l'action
 if (isset($_POST['actionAsk'])) {
     $date_s = date('Y-m-d');
+    //On verifie si l'user veut faire un commentaire
     if ($_POST['actionAsk'] == 'commenter') {
         $url = '../../controler/index.php?pg=' . md5('showask') . '&' . md5('id_question') . '=' . clean_champs($_POST['id_post']);
+        //Si le champ commentaire n'est pas vide alors on vide les champs 
         if (!empty($_POST['commenter_form'])) {
             $cmt = clean_champs($_POST['commenter_form']);
             $id_post = clean_champs($_POST['id_post']);
 
+            //On prepare la requete d'insertion  
             $sql_send = $connexion->prepare(
                 'INSERT INTO post(
                         id_post, post_title, contenu_q_r, date_send, type_post, id_author, id_post_question, fermer
@@ -17,6 +21,7 @@ if (isset($_POST['actionAsk'])) {
                         :id_post, :post_title, :contenu_q_r, :date_send, :type_post, :id_author, :idquestion, :fermer
                     )'
             );
+            //On fait un try catch pour verifier sil y a des erreurs eventuelles lors de l'insertion
             try {
                 $sql_send->execute(
                     array(
@@ -40,7 +45,10 @@ if (isset($_POST['actionAsk'])) {
             generalRedirect($url);
             exit;
         }
-    } else if ($_POST['actionAsk'] == 'newAsk') {
+    }
+    //verifie si l'action est pour poser une question 
+    else if ($_POST['actionAsk'] == 'newAsk') {
+        //On recupere et on stocke dans les variables
         $question = clean_champs($_POST['titre_ask']);
         $detail = clean_champs($_POST['askform']);
         $code = clean_champs($_POST['code_form']);
@@ -50,12 +58,13 @@ if (isset($_POST['actionAsk'])) {
         $url = '../../controler/index.php?pg=' . md5('askform');
         $url1 = '../../controler/index.php?pg=' . md5('question');
         $url2 = $url . '&titre_question=' . $question . '&detail=' . $detail . '&code=' . $code . '&erreur=champs';
-
+        //On verifie si la question existe deja 
         if (exist_Question($question) == true) {
             $url3 = $url1 . '&erreurQuestionExisite';
             generalRedirect($url3);
             exit;
         } else {
+            //Si la question n'existait pas encore posee
             if ((!empty($question))) {
                 if (empty($detail) && empty($code) && empty($img)) {
                     generalRedirect($url2);
