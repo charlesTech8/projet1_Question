@@ -6,22 +6,7 @@
   >
     <!-- Right -->
     <div>
-      <a href="" class="me-4 text-reset">
-        <i class="bi bi-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="bi bi-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="bi bi-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="bi bi-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="bi bi-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
+      <a href="https://github.com/charlesTech8/projet1_Question.git" class="me-4 text-reset">
         <i class="bi bi-github"></i>
       </a>
     </div>
@@ -41,7 +26,7 @@
           </h3>
           <p >
             <!--texte de presentation-->
-            We can est une plateforme d'echange concu pour des etudiants en informatique et par des etudiants en informatique. Son but est de creer un large reseau de professionnels de l'IT au Benin et dans la sous-region, ou les utilisateurs pourront partager leurs experiences, preoccupations, et opportunites.
+            We can est une plateforme d'echange conçu pour des étudiants et par des étudiants en informatique. Son but est de créer un large reseau de professionnels de l'IT au Benin et dans la sous-region, ou les utilisateurs pourront partager leurs experiences, preoccupations, et opportunites.
           </p>
         </div>
         <!-- Grid column -->
@@ -59,7 +44,10 @@
             <a href="../controler/index.php?pg=<?php echo md5('question') ?>" class="text-reset">Questions</a>
           </p>
           <p>
-            <a href="index.php?pg=contactme" class="text-reset">Contacts</a>
+            <a href="../controler/index.php?pg=<?= md5('askform'); ?>" class="text-reset">Poser une question</a>
+          </p>
+          <p>
+            <a href="../controler/index.php?pg=<?php echo md5('contactus') ?>" class="text-reset">Contacts</a>
           </p>
         </div>
         <!-- Grid column -->

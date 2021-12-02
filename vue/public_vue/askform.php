@@ -21,7 +21,7 @@ if (!isset($_SESSION['id_user']) || empty($_SESSION['id_user'])) {
             }
           ?>
         <p class="alert alert-primary text-center brush-xml" role="alert">
-          NB: Posez votre question tout en permettant autres membres de vous comprendre afin de vous aider à trouver une solution à votre problème.
+          NB: Posez votre question tout en facilitant la compréhension aux autres membres ce qui leur permettra de trouver une solution à votre problème.
         </p>
         <form action="../module/askMod/askformMod.php" method="post" enctype="multipart/form-data">
           <p>

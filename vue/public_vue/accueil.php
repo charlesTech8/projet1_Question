@@ -35,7 +35,7 @@
         <div class="row pt-5">
             <div class="col-sm-7 order-md-2 pt-5 text-center">
                 <h2>~Nos formations~</h2>
-                <p class="lead">Nous vous proposons des formations en <strong>HTML, CSS, JavaScript, PHP</strong> sur des durées selon le langage dans lequel vous souhaitez approfondir vos connaissances ou pour les débutants qui ne s'y connaissent pas dans le domaine de l'informatique. </p>
+                <p class="lead">Nous vous proposons des formations en <strong>HTML, CSS, JavaScript, PHP, Python, Java, C++, C#, ...</strong> sur des durées selon le langage dans lequel vous souhaitez approfondir vos connaissances ou pour les débutants qui ne s'y connaissent pas dans le domaine de l'informatique. </p>
             </div>
             <div class="col-sm-5 order-md-1">
                 <img style="border-radius: 5px;" src="http://localhost/projet1Question/vue/image/formation.jpg" class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
@@ -53,39 +53,60 @@
         </div>
     </div>
     <div class="pt-5"></div>
+    <div class="jumbotron pt-5">
+    <h3 class="text-uppercase fw-bold mb-4">
+           Qui sommes-nous?
+          </h3>
+          <p class="text-center">
+            <!--texte de presentation-->
+            We can est une plateforme d'echange conçu pour des étudiants et par des étudiants en informatique. 
+            Son but est de créer un large reseau de professionnels de l'IT au Benin et dans la sous-region, 
+            ou les utilisateurs pourront partager leurs experiences, preoccupations, et opportunites.
+          </p>
+
+          <p class="text-center">
+            <!--texte de presentation-->
+            De plus nous vous offrons des services comme la création de site web de tout gens, la création d'application mobile,
+            le dévéloppement de plugins WordPress afin d'augmenter la notoriété de votre site. Nous donnons également des formations 
+            dans des langages de programmation. 
+          </p>
+
+          <div class="pt-5"></div>
     <h2 class="text-center pt-5">~Nos Langages~</h2>
     <div class="container row">
         <!-- Three columns of text below the carousel -->
         <div class="row pt-5">
             <div class="col-sm-2 pr-5">
-                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/code.jpg" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="../vue/image/code.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2 style="padding-left: 35px;">Html</h2>
             </div>
             <div class="col-sm-2">
-                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/logohtml.jpg" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="../vue/image/logohtml.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2 style="padding-left: 45px;">Css</h2>
 
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-2">
-                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="../vue/image/js.png" alt="Generic placeholder image" width="140" height="140">
                 <h2>JavaScript</h2>
 
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-2">
-                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="../vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2>Php/MySQL</h2>
 
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-2">
-                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="../vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2 style="padding-left: 35px;">Java</h2>
 
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-2">
-                <img class="rounded-circle" src="http://localhost/projet1Question/vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
+                <img class="rounded-circle" src="../vue/image/aut.jpg" alt="Generic placeholder image" width="140" height="140">
                 <h2 style="padding-left: 40px;">Dart</h2>
 
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
     </div>
+    </div>
+    
 </div>
