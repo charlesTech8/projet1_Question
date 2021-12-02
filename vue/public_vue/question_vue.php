@@ -36,6 +36,18 @@
                             </a>
                             <footer class="blockquote-footer">Publié le : <cite title="Date"><?= get_question_date($id_question); ?></cite> <br> ___Par : <cite title="Date"><?= get_question_user_name($id_question); ?></cite></footer>
                         </blockquote>
+                        <?php
+                                    if (isset($_SESSION['id_user']))
+                                        if (admin( clean_champs( $_SESSION['id_user'] ) )) {
+                                    ?>
+                                            <form method="POST" action="../module/askMod/askformMod.php">
+                                                <input type="hidden" value="<?= $id_question; ?>" name="id_question" id="id_question">
+                                                <input type="hidden" name="actionAsk" value="deleteAsk">
+                                                <button type="submit" class="btn btn-outline-danger">Supprimer la question</button></button>
+                                            </form>
+                                    <?php
+                                        }
+                                    ?>
                     </div>
                     <hr>
                 </div>

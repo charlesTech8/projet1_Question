@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_user'])) {
             <hr class="colorgraph">
         </div>
         <?php
-        if (get_niveau_user($id_user) == -1) {
+        if (get_tmp_user($id_user) == -1) {
         ?>
             <div class="row">
                 <div class="col-sm-3">
@@ -247,7 +247,7 @@ if (!isset($_SESSION['id_user'])) {
             </div>
             <?php
         } else {
-            if (get_niveau_user($id_user) == 2) {
+            if (get_tmp_user($id_user) == 2) {
             ?>
                 <div class="row">
                     <p class="alert alert-danger">

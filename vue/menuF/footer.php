@@ -63,6 +63,11 @@
             <a href="mailto:gboyoucharles5@gmail.com">NOUS ECRIRE</a>
           </p>
           <p><i class="bi bi-home me-3"></i> BENIN/COTONOU </p>
+          <p>
+            <h5 class="text-center" style="text-decoration: underline;">Site</h5>
+            <a href="https://theinfobenin.000webhostapp.com/controllers/index.php?pg=cours" class="text-reset">Bi-Etudiant</a>
+            <br>Retrouver des documents <br> et épreuves pour étudiant.
+          </p>
         </div>
         <!-- Grid column -->
 

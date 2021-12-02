@@ -82,9 +82,11 @@ if (isset($_POST['actionCon'])) {
                             ],
                             'Subject' => "Confirmation de mail",
                             'TextPart' => "Confirmez votre adresse e-mail",
-                            'HTMLPart' => "
+                            'HTMLPart' => "<h3>Bienvenue sur WE CAN</h3><br>
                             <a href='http://127.0.0.1/projet1Question/module/connect_mod/confirmation.php?email=".$ma."&key=".$key."'>Confirmez votre compte en cliquant ici</a>
                             <p>Votre code de confirmation est : <h3>".$key."</h3></p>
+                            <p>Validez votre email et posez vos questions</p>
+                            <p>WE CAN vous remercie pour votre confiance</p>
                             ",
                             'CustomID' => "AppGettingStartedTest"
                             ]

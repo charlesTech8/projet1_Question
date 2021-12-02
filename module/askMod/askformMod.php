@@ -156,7 +156,55 @@ if (isset($_POST['actionAsk'])) {
         $url = '../../controler/index.php?pg=' . md5('showask') . '&' . md5('id_question') . '=' . $id_question;
         generalRedirect($url);
         exit;
-    } else {
+    } else if($_POST['actionAsk'] == 'deleteAsk'){
+        $id_question = clean_champs($_POST['id_question']);
+
+        $sql_sup_img = $connexion->prepare(
+            'DELETE FROM img WHERE id_post = :id_question'
+        );
+        try {
+            $sql_sup_img->execute(
+                array(
+                    'id_question'   => $id_question
+                )
+            );
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        $sql_sup_img->closeCursor();
+
+        $sql_sup_com = $connexion->prepare(
+            'DELETE FROM post WHERE id_post_question = :id_question AND type_post = :type_post'
+        );
+        try {
+            $sql_sup_com->execute(
+                array(
+                    'id_question'   => $id_question,
+                    'type_post'     => '_answer'
+                )
+            );
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        $sql_sup_com->closeCursor();
+
+        $sql_sup_ques = $connexion->prepare(
+            'DELETE FROM post WHERE id_post = :id_question AND type_post = :type_post'
+        );
+        try {
+            $sql_sup_ques->execute(
+                array(
+                    'id_question'   => $id_question,
+                    'type_post'     => '_question'
+                )
+            );
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        $sql_sup_ques->closeCursor();
+        redirect_page('question');
+        exit;
+    }else {
         redirect_page('question');
         exit;
     }

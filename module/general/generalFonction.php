@@ -284,7 +284,7 @@ function isAdmin( int $id_user ):bool{
  * @param integer $id_user
  * @return integer
  */
-function get_niveau_user( int $id_user ):int{
+function get_tmp_user( int $id_user ):int{
   $niveau = get_user( $id_user );
   if( $niveau != NULL )
     return $niveau['tmp'];

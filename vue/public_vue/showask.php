@@ -28,7 +28,7 @@ $id_question = clean_champs(($_REQUEST[md5('id_question')]));
                                 <div class="col-sm-4 text-right">
                                     <?php
                                     if (isset($_SESSION['id_user']))
-                                        if (get_question_user_id($id_question) == $_SESSION['id_user']) {
+                                        if ((get_question_user_id($id_question) == clean_champs( $_SESSION['id_user'] )) || admin( clean_champs( $_SESSION['id_user'] ) )) {
                                             if (close_question($id_question) != '_close') {
                                     ?>
                                             <form method="POST" action="../module/askMod/askformMod.php">

@@ -36,7 +36,7 @@ if (!isset($_SESSION['id_user']) || empty($_SESSION['id_user'])) {
             </div>
           </div>
           <div id="img_ask" style="display: none;" class="form-group">
-            <p class="alert alert-primary text-left"> <strong>NB: </strong> Ajouter une image claire et nette au format .PNG </p>
+            <p class="alert alert-primary text-left"> <strong>NB: </strong> Ajouter une image claire et nette au format (PNG, JPG, JPEG, GIF) </p>
             <label>Ajouter une image</label>
             <input type="file" name="img" id="img">
           </div>

@@ -4,11 +4,14 @@
             <div class="h_blog_img">
                 <img class="img-fluid" src="../vue/font.jpg" alt="Image" />
             </div>
-            <p>
-                Avec <strong>WE CAN</strong> posez toutes sortes questions
+            <p class="text-center">
+                Avec <strong>WE CAN</strong> posez toutes les questions qui vous cassent la tête afin d'être aider par des amis dans le monde <br>
+                Ensemble nous pouvons trouver une solution
             </p>
             <hr class="colorgraph">
+            <p class="text-center">
             <strong>Merci pour la confiance</strong>
+            </p>
         </div>
         <div class="col-sm-1"></div>
         <form method="POST" action="../module/connect_mod/connect.php" class="col-sm-6 pt-5">
