@@ -3,7 +3,7 @@
     <div class=" container row">
         <div class="row">
             <div class="col-sm-7 pt-5 text-center">
-                <h2>~Dévellopement Web~</h2>
+                <h2>~Développement Web~</h2>
                 <p class="lead"> A travers le développement d'applications web, augmentez la notoriété de votre entreprise, améliorez l'accessibilité son accessibilité tout en créant des ponts entre le numérique et le physique.
                     Les applications web vous permettront également d'augmenter vos ventes,etr de favoriser une gestion fluide et saine. </p>
             </div>
@@ -14,7 +14,7 @@
     
         <div class="row">
             <div class="col-sm-7 order-md-2 pt-5 text-center">
-                <h2>~Dévellopement mobile~</h2>
+                <h2>~Développement mobile~</h2>
                 <p class="lead"> Avec une application mobile,vous serez perçu comme une entreprise moderne et à l'écoute de ses clients. C'est un excellent moyen pour vous faire connaître sur davantage de plateformes, et simplifier la communication entreprise-clients </p>
             </div>
             <div class="col-sm-5 order-md-1">
@@ -44,7 +44,7 @@
     
         <div class="row pt-5">
             <div class="col-sm-7 pt-5 text-center">
-                <h2>~Dévellopement de plugins WordPress~</h2>
+                <h2>~Développement de plugins WordPress~</h2>
                 <p class="lead">Utiliser un plugin WordPress vous permettra de mettre rapidement à jour l'ensemble de vos sites .</p>
             </div>
             <div class="col-sm-5">
